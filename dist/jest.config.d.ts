@@ -1,5 +1,5 @@
 declare const _default: {
-    moduleFileExtensions: any[];
+    moduleFileExtensions: string[];
     moduleMapper: {
         [key: string]: string | string[];
     };

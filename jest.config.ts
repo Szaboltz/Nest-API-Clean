@@ -2,7 +2,7 @@ import { pathsToModuleNameMapper } from 'ts-jest'
 import { compilerOptions } from './tsconfig.json'
 
 export default {
-  moduleFileExtensions: [],
+  moduleFileExtensions: ["js", "json", "ts"],
   moduleMapper: pathsToModuleNameMapper(
     compilerOptions.paths, {
       prefix: '<rootDir>/'

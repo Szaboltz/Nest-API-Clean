@@ -6,15 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConfigModule = void 0;
+exports.EnvConfigModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_service_1 = require("./config.service");
-let ConfigModule = class ConfigModule {
+const config_1 = require("@nestjs/config");
+const node_path_1 = require("node:path");
+let EnvConfigModule = class EnvConfigModule extends config_1.ConfigModule {
+    static forRoot(options) {
+        return super.forRoot({
+            ...options,
+            envFilePath: [
+                (0, node_path_1.join)(__dirname, `../../../../.env.${process.env.ENV}`)
+            ]
+        });
+    }
 };
-exports.ConfigModule = ConfigModule;
-exports.ConfigModule = ConfigModule = __decorate([
+exports.EnvConfigModule = EnvConfigModule;
+exports.EnvConfigModule = EnvConfigModule = __decorate([
     (0, common_1.Module)({
-        providers: [config_service_1.ConfigService]
+        providers: [config_service_1.EnvConfigService]
     })
-], ConfigModule);
+], EnvConfigModule);
 //# sourceMappingURL=config.module.js.map
