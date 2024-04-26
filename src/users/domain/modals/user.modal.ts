@@ -4,3 +4,26 @@ export type UserProps = {
   password: string,
   createdAt?: Date
 }
+
+export class UserModal {
+  constructor(public readonly props: UserProps){
+   // this.props.createdAt ? this.props.createdAt : new Date()
+   this.props.createdAt = this.props.createdAt ?? new Date()
+  }
+
+  public get name(): string {
+    return this.props.name
+  }
+
+  public get email(): string {
+    return this.props.email
+  }
+
+  public get password(): string {
+    return this.props.password
+  }
+
+  public get createdAt(): Date {
+    return this.props.createdAt
+  }
+}
