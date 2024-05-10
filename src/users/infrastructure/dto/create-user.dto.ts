@@ -1,1 +1,1 @@
-export class createUserDto {}
+export class CreateUserDto {}
