@@ -1,20 +1,22 @@
 import { UserEntity, UserProps } from '../../user.entity'
 import { before } from 'node:test'
-import { UserDateBuilder } from '@/users/domain/testing/helpers/user-data-builder'
+import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder'
 
 describe('UserEntity Unit Test', () => {
   let props: UserProps
   let sut: UserEntity
   beforeEach(() => {
-    props = UserDateBuilder()
+    UserEntity.validate = jest.fn()
+    props = UserDataBuilder({})
     sut = new UserEntity(props)
   })
 
   it('Constructor method', () => {
+    expect(UserEntity.validate).toHaveBeenCalled()
     expect(sut.props.name).toEqual(props.name)
     expect(sut.props.email).toEqual(props.email)
     expect(sut.props.password).toEqual(props.password)
-    expect(sut.props.CreateAt).toBeInstanceOf(Date)
+    expect(sut.props.createdAt).toBeInstanceOf(Date)
   })
 
   it('Getter of name field', () => {
@@ -46,8 +48,8 @@ describe('UserEntity Unit Test', () => {
   })
 
   it('Getter of CreateAt field', () => {
-    expect(sut.props.CreateAt).toBeDefined()
-    expect(sut.props.CreateAt).toBeInstanceOf(Date)
+    expect(sut.props.createdAt).toBeDefined()
+    expect(sut.props.createdAt).toBeInstanceOf(Date)
   })
 
   it('Should update a user - name', () => {
@@ -57,6 +59,7 @@ describe('UserEntity Unit Test', () => {
 
   it('Should update a user - password', () => {
     sut.updatePassword('new password')
+    expect(UserEntity.validate).toHaveBeenCalled()
     expect(sut.props.password).toEqual('new password')
   })
 })
