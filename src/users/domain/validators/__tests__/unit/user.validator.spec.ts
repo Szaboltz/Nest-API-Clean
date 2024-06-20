@@ -50,7 +50,7 @@ describe('UserValidator uit tests', () => {
       })
       expect(isValid).toBeFalsy()
       expect(sut.errors['name']).toStrictEqual([
-        'name must be a string',   
+        'name must be a string',
         'name must be shorter than or equal to 255 characters'
       ])
     })
@@ -61,8 +61,7 @@ describe('UserValidator uit tests', () => {
         name: 'a'.repeat(256) as any
       })
       expect(isValid).toBeFalsy()
-      expect(sut.errors['name']).toStrictEqual([ 
-        'name must be shorter than or equal to 255 characters'
+      expect(sut.errors['name']).toStrictEqual([        'name must be shorter than or equal to 255 characters'
       ])
     })
 
